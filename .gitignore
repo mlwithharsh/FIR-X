@@ -6,6 +6,7 @@ Thumbs.db
 __pycache__/
 *.pyc
 .pytest_cache/
+backend/pytest-cache-files-*/
 node_modules/
 .next/
 dist/
@@ -13,3 +14,5 @@ build/
 coverage/
 generated/
 backend/generated/
+backend/firai.db
+backend/firai.db-journal
