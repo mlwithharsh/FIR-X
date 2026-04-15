@@ -11,7 +11,7 @@ class Settings(BaseSettings):
     database_url: str = "sqlite:///./generated/firai.db"
     openai_api_key: str | None = None
     openai_model: str = "gpt-4.1-mini"
-    cors_origins: list[str] = ["http://localhost:3000"]
+    cors_origins: str | list[str] = ["http://localhost:3000"]
     generated_dir: str = "generated"
 
     model_config = SettingsConfigDict(env_file=".env", extra="ignore")
