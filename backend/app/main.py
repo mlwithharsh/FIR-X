@@ -6,7 +6,7 @@ from sqlalchemy import select
 
 from app.config import get_settings
 from app.db import Base, SessionLocal, engine
-from app.models.template_version import TemplateVersion
+from app.models import AccidentCase, TemplateVersion
 from app.routes.health import router as health_router
 from app.routes.reports import router as reports_router
 from app.routes.templates import router as templates_router
