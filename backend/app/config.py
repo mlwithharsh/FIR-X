@@ -11,7 +11,7 @@ class Settings(BaseSettings):
     database_url: str = "sqlite:///./generated/firai.db"
     openai_api_key: str | None = None
     openai_model: str = "gpt-4.1-mini"
-    cors_origins: str | list[str] = ["http://localhost:3000"]
+    cors_origins: str | list[str] = ["http://localhost:3000", "https://fir-x.vercel.app"]
     generated_dir: str = "generated"
 
     model_config = SettingsConfigDict(env_file=".env", extra="ignore")
@@ -20,7 +20,18 @@ class Settings(BaseSettings):
     @classmethod
     def split_origins(cls, value: str | list[str]) -> list[str]:
         if isinstance(value, str):
-            return [item.strip() for item in value.split(",") if item.strip()]
+            # Handle empty strings
+            if not value.strip():
+                return []
+            # Handle JSON list format
+            if value.startswith("[") and value.endswith("]"):
+                try:
+                    import json
+                    return json.loads(value)
+                except:
+                    pass
+            # Handle comma-separated strings
+            return [item.strip().strip("'\"") for item in value.split(",") if item.strip()]
         return value
 
     @property

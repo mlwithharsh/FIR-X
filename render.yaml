@@ -14,5 +14,7 @@ services:
         value: sqlite:///./generated/firai.db
       - key: GENERATED_DIR
         value: generated
+      - key: CORS_ORIGINS
+        value: "*"
       - key: PYTHON_VERSION
         value: 3.11.12
