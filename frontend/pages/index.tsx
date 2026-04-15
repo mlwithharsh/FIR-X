@@ -29,11 +29,11 @@ export default function HomePage() {
           <div className="mb-8 rounded-[2rem] border border-white/60 bg-white/70 p-8 shadow-panel">
             <p className="text-sm font-semibold uppercase tracking-[0.22em] text-rust">FIR.ai V2</p>
             <h1 className="mt-3 max-w-3xl text-4xl font-semibold leading-tight md:text-5xl">
-              Intelligent FIR and accident report drafting for MACT-aligned police workflows.
+              MACT DAR drafting that mirrors the court packet and fills Word output directly from web inputs.
             </h1>
             <p className="mt-4 max-w-2xl text-sm leading-6 text-ink/75">
-              Capture a small set of case facts once, auto-fill repeated details across FORM-I, FORM-III, FORM-IV, FORM-V,
-              FORM-VII, preview the legal narrative, and export a bundled `.docx` packet.
+              Enter FIR, accident, hospital, doctor, vehicle, owner, driver, victim, and L/R details once. Preview the
+              narrative, then generate a browser-downloadable `.docx` based on the supplied DAR Word template.
             </p>
           </div>
 
