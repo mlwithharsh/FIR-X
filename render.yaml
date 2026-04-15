@@ -1,6 +1,7 @@
 services:
   - type: web
     name: fir-auto-backend
+    runtime: python
     env: python
     rootDir: backend
     buildCommand: pip install -r requirements.txt
@@ -13,3 +14,5 @@ services:
         value: sqlite:///./generated/firai.db
       - key: GENERATED_DIR
         value: generated
+      - key: PYTHON_VERSION
+        value: 3.11.12
