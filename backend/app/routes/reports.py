@@ -34,17 +34,19 @@ def preview_report(payload: ReportRequest) -> PreviewResponse:
 def generate_report(payload: ReportRequest) -> GenerateResponse:
     legal_description = generate_legal_description(payload)
     generator = _build_generator()
-    
-    # Create a nice filename: e.g. 212-2026 New DAR Form (9).docx
+
+    # UUID for internal storage (safe for URLs), nice name for download
+    file_id = str(uuid4())
+    internal_name = f"{file_id}.docx"
     fir_filename = payload.case_details.fir_number.replace("/", "-")
-    file_name = f"{fir_filename} New DAR Form (9).docx"
-    
-    output_path = generator.generate_dar(payload, legal_description, file_name)
+    display_name = f"{fir_filename} New DAR Form (9).docx"
+
+    output_path = generator.generate_dar(payload, legal_description, internal_name)
 
     return GenerateResponse(
-        file_name=output_path.name,
-        download_path=f"/api/v1/reports/download/{output_path.name}",
-        generated_files=[output_path.name],
+        file_name=display_name,
+        download_path=f"/api/v1/reports/download/{internal_name}",
+        generated_files=[display_name],
     )
 
 
@@ -54,4 +56,7 @@ def download_bundle(file_name: str) -> FileResponse:
     if not path.exists():
         raise HTTPException(status_code=404, detail="Generated file not found")
     media_type = "application/vnd.openxmlformats-officedocument.wordprocessingml.document"
-    return FileResponse(path=Path(path), media_type=media_type, filename=file_name)
+    # Derive a nice display filename from the internal UUID name
+    display_name = file_name if " " in file_name else f"DAR Form.docx"
+    return FileResponse(path=Path(path), media_type=media_type, filename=display_name)
+

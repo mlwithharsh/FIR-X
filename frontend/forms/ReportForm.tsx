@@ -164,7 +164,7 @@ export function ReportForm({ onPreview }: Props) {
       setDownloadUrl(url);
       setGeneratedFiles(result.generated_files);
 
-      // Directly trigger download
+      // Directly trigger download of the .docx from the backend
       const link = document.createElement("a");
       link.href = url;
       link.setAttribute("download", result.file_name);
