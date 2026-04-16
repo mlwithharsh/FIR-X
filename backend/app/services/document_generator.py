@@ -21,7 +21,7 @@ class DocumentGenerator:
         self.generated_dir = generated_dir
         self.generated_dir.mkdir(parents=True, exist_ok=True)
 
-    def generate_dar(self, data: ReportRequest, legal_description: str, case_id: str) -> Path:
+    def generate_dar(self, data: ReportRequest, legal_description: str, filename: str) -> Path:
         template_path = self.template_dir / self._TEMPLATE_NAME
         if not template_path.exists():
             raise FileNotFoundError(f"DAR template not found: {template_path}")
@@ -30,7 +30,7 @@ class DocumentGenerator:
         replacements = self._build_replacements(data, legal_description)
         self._apply_replacements(document, replacements)
 
-        output_path = self.generated_dir / f"{case_id}_dar.docx"
+        output_path = self.generated_dir / filename
         document.save(output_path)
         return output_path
 

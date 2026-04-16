@@ -160,8 +160,17 @@ export function ReportForm({ onPreview }: Props) {
     try {
       setError("");
       const result = await generateReport(normalize(values));
-      setDownloadUrl(buildDownloadUrl(result.download_path));
+      const url = buildDownloadUrl(result.download_path);
+      setDownloadUrl(url);
       setGeneratedFiles(result.generated_files);
+
+      // Directly trigger download
+      const link = document.createElement("a");
+      link.href = url;
+      link.setAttribute("download", result.file_name);
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
     } catch (err) {
       setError(err instanceof Error ? err.message : "Generation failed");
     }

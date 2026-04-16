@@ -34,8 +34,12 @@ def preview_report(payload: ReportRequest) -> PreviewResponse:
 def generate_report(payload: ReportRequest) -> GenerateResponse:
     legal_description = generate_legal_description(payload)
     generator = _build_generator()
-    file_id = str(uuid4())
-    output_path = generator.generate_dar(payload, legal_description, file_id)
+    
+    # Create a nice filename: e.g. 212-2026 New DAR Form (9).docx
+    fir_filename = payload.case_details.fir_number.replace("/", "-")
+    file_name = f"{fir_filename} New DAR Form (9).docx"
+    
+    output_path = generator.generate_dar(payload, legal_description, file_name)
 
     return GenerateResponse(
         file_name=output_path.name,
