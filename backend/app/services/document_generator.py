@@ -14,7 +14,7 @@ from app.services.conditional_logic import build_conditional_sections
 
 
 class DocumentGenerator:
-    _TEMPLATE_NAME = "dar_reference.docx"
+    _TEMPLATE_NAME = "212-2026 New DAR Form (9).docx"
 
     def __init__(self, template_dir: Path, generated_dir: Path) -> None:
         self.template_dir = template_dir
