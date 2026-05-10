@@ -54,3 +54,12 @@ class DARForm(BaseModel):
     io_phone: str = Field(min_length=1, max_length=100)
     ps_name: str = Field(min_length=1, max_length=200)
     legal_representatives: list[LegalRepresentative] = Field(default_factory=list, max_length=7)
+
+
+class TemplateVersionResponse(BaseModel):
+    model_config = ConfigDict(extra="forbid")
+
+    template_name: str
+    version: int
+    file_name: str
+    is_active: bool
