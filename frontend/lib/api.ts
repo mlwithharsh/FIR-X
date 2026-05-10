@@ -51,7 +51,7 @@ export type DARFormValues = {
   legal_representatives: LegalRepresentative[];
 };
 
-export type ReportFormValues = DARFormValues;
+export type ReportFormValues = any;
 
 function getDownloadFilename(header: string | null) {
   if (!header) return "DAR_FIR.docx";
