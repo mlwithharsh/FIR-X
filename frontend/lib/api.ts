@@ -4,12 +4,24 @@ export type LegalRepresentative = {
   name: string;
   relation: string;
   age: string;
+  gender: string;
+  marital_status: string;
   address: string;
+  contact: string;
+};
+
+export type MinorChild = {
+  name: string;
+  school_class: string;
+  annual_fee: string;
+  approximate_expenses: string;
 };
 
 export type DARFormValues = {
   fir_no: string;
   date: string;
+  under_section: string;
+  case_type: "Fatal" | "Simple Injury" | "Grievous Injury" | "Property Damage" | "Other";
   accident_date: string;
   accident_time: string;
   accident_place: string;
@@ -17,6 +29,7 @@ export type DARFormValues = {
   driver_father: string;
   driver_address: string;
   driver_mobile: string;
+  driver_age: string;
   driver_dl_no: string;
   driver_dl_validity: string;
   driver_dl_authority: string;
@@ -37,9 +50,34 @@ export type DARFormValues = {
   deceased_name: string;
   deceased_husband: string;
   deceased_age: string;
+  victim_contact: string;
+  victim_gender: string;
+  victim_marital_status: string;
   deceased_address: string;
   deceased_occupation: string;
   deceased_income: string;
+  victim_employer: string;
+  victim_income_tax_assessed: "Yes" | "No";
+  victim_sole_earner: "Yes" | "No";
+  deceased_medical_treatment: string;
+  victim_reimbursed: "Yes" | "No";
+  victim_reimbursement_details: string;
+  injury_nature: string;
+  injury_treatment: string;
+  hospitalization_period: string;
+  surgery_details: string;
+  permanent_disability: "Yes" | "No";
+  permanent_disability_details: string;
+  treatment_expenses: string;
+  future_treatment_expenses: string;
+  conveyance_expenses: string;
+  loss_of_income: string;
+  loss_of_earning_capacity: string;
+  other_pecuniary_loss: string;
+  property_loss: string;
+  additional_information: string;
+  accident_brief: string;
+  compensation_claimed: string;
   hospital_name: string;
   hospital_address: string;
   doctor_name: string;
@@ -49,6 +87,7 @@ export type DARFormValues = {
   io_phone: string;
   ps_name: string;
   legal_representatives: LegalRepresentative[];
+  minor_children: MinorChild[];
 };
 
 export type ReportFormValues = any;
